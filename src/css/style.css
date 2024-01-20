@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Noto+Sans&family=Tulpen+One&display=swap');
+
+/* Variables */
+:root {
+    --heading: 'Josefin Sans', sans-serif;
+    --subheading: 'Noto Sans', sans-serif;
+    --body: 'Noto Sans', sans-serif;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading);
+}
+h1 {
+    font-size: 30px;
+    color: var(--blue);
+}
+h2 {
+    font-size: 20px;
+    color: var(--black);
+}
+
+p {
+    font-family: var(--body);
+    font-size: 16px;
+    color: var(--black);
+}
+
+/* Colors */
+:root {
+    --cyan: #80E5D1;
+    --blue: #063B8A;
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+/* Other global styles */
+body {
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+/* Buttons */
+button {
+    font-family: var(--subheading);
+    font-size: 16px;
+    color: var(--white);
+    background-color: var(--cyan);
+    border: none;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Opening Screen */
+.opening-screen, .home-screen, .input-screen, .difficulty-screen, .question-number-screen, .name-screen, .loading-screen, .quiz-screen, .quiz-finish-screen {
+    padding-left: 48px;
+    padding-right: 48px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+}
+.opening-screen h1 {
+    color: var(--black);
+}
+
+/* Home Screen */
+.big-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    height: 10rem;
+    width: calc(100% - 96px); /* 100% width minus the sum of left and right margins */
+    border-radius: 30px;
+    margin-top: 30px;
+    padding: 0;
+    text-decoration: none;
+}
+.big-button img {
+    height: 100%;
+}
+.big-button h2 {
+    width: 100%;
+    text-align: center;
+}
+.quiz-button {
+    border: 7px solid var(--Navy, #063B8A);
+    justify-content: flex-start;
+}
+.history-button {
+    border: 7px solid var(--cyan);
+    justify-content: flex-end;
+}
+
+/* Input Screen */
+textarea {
+    width: 100%;
+    height: 200px;
+    border: 3px solid var(--blue);
+    border-radius: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.input-title {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Name Screen */
+.name-screen textarea{
+    height: 15px;
+}
+
+/* Quiz */
+.answer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
