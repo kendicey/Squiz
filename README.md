@@ -15,7 +15,7 @@ React.js, CSS, Node.js, Express.js, OpenAI API, Git, Figma, Adobe Illustrator, S
 1. Clone the repository:
 
 ```
-git clone [https://github.com/elise-green/cmd-f-hackathon-2023.git](https://github.com/kendicey/Squiz.git)
+git clone https://github.com/elise-green/cmd-f-hackathon-2023.git](https://github.com/kendicey/Squiz.git)
 ```
 2. Create a `.env` file and input your OpenAI api key
 
