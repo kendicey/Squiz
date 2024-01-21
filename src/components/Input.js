@@ -72,10 +72,6 @@ const Input = () => {
           onChange={handleFileChange}
           style={{ display: "none" }} 
         />
-        <div>
-          <h2>Extracted Text:</h2>
-          <pre>{pdfContent}</pre>
-        </div>
         <Link to="/difficulty">
           <div className="button blue-button short-button continue-button ">
             <h2>Continue</h2>

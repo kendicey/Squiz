@@ -8,6 +8,7 @@ import { useMyContext } from './Context';
 
 const Difficulty = () => {
     const { requestObject, updateRequestObject } = useMyContext();
+    const [ difficultyLevel, setDifficultyLevel ] = useState('');
 
     const svgBackground = {
         backgroundImage: `url(${Bg})`,
@@ -17,6 +18,8 @@ const Difficulty = () => {
 
     const handleDifficultyChange = (e) => {
         const level = e.target.id;
+        console.log(level);
+        setDifficultyLevel(level);
         updateRequestObject({difficulty: level});
         console.log(requestObject);
     }

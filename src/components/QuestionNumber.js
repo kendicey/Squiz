@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import "../css/style.css";
 import Cyan from "../assets/img/cyan.svg";
@@ -8,6 +8,7 @@ import { useMyContext } from './Context';
 
 const QuestionNumber = () => {
     const { requestObject, updateRequestObject } = useMyContext();
+    const [ number, setNumber ] = useState('');
 
     const svgBackground = {
         backgroundImage: `url(${Bg})`,
@@ -17,6 +18,8 @@ const QuestionNumber = () => {
 
     const handleNumberChange = (e) => {
         const num = e.target.id;
+        console.log(num);
+        setNumber(num);
         updateRequestObject({questionNumber: num});
         console.log(requestObject);
     }
