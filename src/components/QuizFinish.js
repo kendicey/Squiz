@@ -16,8 +16,8 @@ const QuizFinish = () => {
 
     return (
         <div className="quiz-finish-screen" style={svgBackground}>
-            <img src={Purple} alt="purple" />
-            <h1>Score: 100% (10/10)</h1>
+            <img src={Purple} alt="purple" className="floating"/>
+            <h1>Score: 80% (8/10)</h1>
             <Link to="/" className="link">
                 <div className="button white-button long-button review-button">
                     <h2>Review</h2>
@@ -33,11 +33,11 @@ const QuizFinish = () => {
                     <h2>New Questions</h2>
                 </div>
             </Link>
-            <div>
-                <Link to="/" className="link">
+            <div className="icons-container">
+                <Link to="/home" className="link">
                     <img src={HomeBtn} alt="Home Button" className="home-button" />
                 </Link>
-                <Link to="/" className="link">
+                <Link to="/home" className="link">
                     <img src={ShareBtn} alt="Share Button" className="share-button" />
                 </Link>
             </div>

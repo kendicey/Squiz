@@ -5,8 +5,9 @@ import Orange from "../assets/img/orange.svg";
 import BgLight from "../assets/img/bg-light.svg";
 import ProgressBar from "../assets/img/progress-bar.svg";
 import HomeBtnSmall from "../assets/img/home-button-sm.svg";
+import NextButton from "../assets/img/next-button.svg";
 
-const Quiz = () => {
+const CorrectAnswerMockup = () => {
 
     const svgBackground = {
         backgroundImage: `url(${BgLight})`,
@@ -30,24 +31,25 @@ const Quiz = () => {
                 <h2>Q1</h2>
                 <h2>What command is used to read the online manual page for a command?</h2>
             </div>
-            <Link to="/wrong-answer-mockup" className="link">
+            <div className="answer-container">
                 <div className="button long-button white-button answer-button">
                     <h2>ls</h2>
                 </div>
-            </Link>
-            <div className="button long-button white-button answer-button">
-                <h2>cat</h2>
-            </div>
-            <Link to="/correct-answer-mockup" className="link">
                 <div className="button long-button white-button answer-button">
+                    <h2>cat</h2>
+                </div>
+                <div className="correct-answer button long-button white-button answer-button">
                     <h2>man</h2>
                 </div>
-            </Link>
-            <div className="button long-button white-button answer-button">
-                <h2>cp</h2>
+                <div className="button long-button white-button answer-button">
+                    <h2>cp</h2>
+                </div>
             </div>
+            <Link to="/quiz-finish" className="link next-button">
+                <img src={NextButton} alt="next button" />
+            </Link>
         </div>
     );
 }
 
-export default Quiz;
+export default CorrectAnswerMockup;

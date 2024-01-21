@@ -5,6 +5,7 @@ import CyanGreen from "../assets/img/cyan-green.svg";
 import Bg from "../assets/img/bg.svg";
 import BackBtn from "../assets/img/back-button.svg";
 import { useMyContext } from './Context';
+import QuestionMark from "../assets/img/question-mark.svg";
 
 const Difficulty = () => {
     const { requestObject, updateRequestObject } = useMyContext();
@@ -26,7 +27,8 @@ const Difficulty = () => {
 
     return (
         <div className="difficulty-screen" style={svgBackground} >
-            <img src={CyanGreen} alt="cyan-green" />
+            <img src={QuestionMark} alt="question mark" className="question-mark floating"/>
+            <img src={CyanGreen} alt="cyan-green" className="floating"/>
             <h1>Difficulty</h1>
             <Link to="/question-number" className="link">
                 <div className="button long-button white-button easy-button" id="easy" onClick={handleDifficultyChange}>

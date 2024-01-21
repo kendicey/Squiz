@@ -40,7 +40,7 @@ const Name = () => {
 
     return (
         <div className="name-screen" style={svgBackground}>
-            <img src={Orange} alt="orange" />
+            <img src={Orange} alt="orange" className="floating"/>
             <h1>Name Your Quiz!</h1>
             <div className="input-container">
                 <textarea

@@ -53,7 +53,7 @@ const Input = () => {
           <h1>What do you want to revise?</h1>
         </div>
         <div className="title">
-          <img src={Cyan} alt="cyan" />
+          <img src={Cyan} alt="cyan" className="floating"/>
           <h2>Give me your notes so I can Squiz for you!</h2>
         </div>
         <div className="input-container">
@@ -63,7 +63,7 @@ const Input = () => {
           OR
         </h2>
         <label htmlFor="file-selector" className="button cyan-button long-button pdf-button upload-button">
-          PDF Upload
+          <h2>PDF Upload</h2>
         </label>
         <input
           type="file"
