@@ -1,5 +1,6 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from 'react';
+import { createContext } from 'react';
 import 'canvas';
 
 import Opening from "./components/Opening";
@@ -11,23 +12,26 @@ import Name from "./components/Name";
 import Loading from "./components/Loading";
 import Quiz from "./components/Quiz";
 import QuizFinish from "./components/QuizFinish";
+import { MyProvider } from "./components/Context";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Opening />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/input" element={<Input />} />
-          <Route path="/difficulty" element={<Difficulty />} />
-          <Route path="/question-number" element={<QuestionNumber />} />
-          <Route path="/name" element={<Name />} />
-          <Route path="/loading" element={<Loading />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/quiz-finish" element={<QuizFinish />} />
-        </Routes>
-      </div>
+      <MyProvider>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Opening />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/input" element={<Input />} />
+            <Route path="/difficulty" element={<Difficulty />} />
+            <Route path="/question-number" element={<QuestionNumber />} />
+            <Route path="/name" element={<Name />} />
+            <Route path="/loading" element={<Loading />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/quiz-finish" element={<QuizFinish />} />
+          </Routes>
+        </div>
+      </MyProvider>
     </BrowserRouter>
   );
 }

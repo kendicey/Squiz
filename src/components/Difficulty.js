@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import "../css/style.css";
 import CyanGreen from "../assets/img/cyan-green.svg";
-import YellowBB from "../assets/img/yellow-bb.svg";
-import CyanBB from "../assets/img/cyan-bb.svg";
-import GreyBB from "../assets/img/grey-bb.svg";
 import Bg from "../assets/img/bg.svg";
 import BackBtn from "../assets/img/back-button.svg";
+import { useMyContext } from './Context';
 
 const Difficulty = () => {
+    const { requestObject, updateRequestObject } = useMyContext();
 
     const svgBackground = {
         backgroundImage: `url(${Bg})`,
@@ -16,12 +15,18 @@ const Difficulty = () => {
         backgroundSize: 'cover',
     };
 
+    const handleDifficultyChange = (e) => {
+        const level = e.target.id;
+        updateRequestObject({difficulty: level});
+        console.log(requestObject);
+    }
+
     return (
         <div className="difficulty-screen" style={svgBackground} >
             <img src={CyanGreen} alt="cyan-green" />
             <h1>Difficulty</h1>
             <Link to="/question-number" className="link">
-                <div className="button long-button white-button easy-button">
+                <div className="button long-button white-button easy-button" id="easy" onClick={handleDifficultyChange}>
                     <svg style={{ marginRight: "10px" }} width="35" height="40" viewBox="0 0 43 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M35.0607 22.72C34.2407 22.72 33.4807 22.21 33.1807 21.41C32.2207 18.78 31.0507 16.28 29.7207 13.97C27.8707 10.76 26.1907 8.72002 24.5807 7.71002C23.6707 7.14002 23.3707 5.95002 23.9107 5.02002C24.2807 4.38002 24.9507 4.02002 25.6507 4.02002C25.9707 4.02002 26.2907 4.10002 26.5807 4.25002C30.8707 6.52002 36.3807 9.71002 38.2907 12.02C39.9407 14.01 40.0007 17.06 39.3307 19.18C38.7907 20.9 37.7707 22.05 36.4707 22.41L35.6007 22.65C35.4207 22.7 35.2407 22.72 35.0607 22.72Z" fill="#EAD65E"/>
                         <path d="M25.6407 6.01C28.2907 7.41 34.8807 11.03 36.7507 13.29C38.4907 15.4 37.7207 19.99 35.9407 20.48L35.0707 20.72C34.0907 18.05 32.9007 15.45 31.4607 12.96C29.2507 9.13 27.3807 7.09 25.6507 6.01M25.6407 2.01C24.2507 2.01 22.9107 2.73 22.1707 4.01C21.1007 5.88 21.6907 8.26 23.5207 9.4C24.8307 10.22 26.3307 12.09 27.9907 14.96C29.2707 17.17 30.3807 19.57 31.3007 22.09C31.8907 23.7 33.4107 24.72 35.0607 24.72C35.4107 24.72 35.7707 24.67 36.1307 24.57L37.0007 24.33C38.9807 23.78 40.4807 22.16 41.2307 19.77C42.0607 17.13 41.9507 13.31 39.8207 10.73C38.1207 8.67 33.9707 5.89 27.5007 2.46C26.9007 2.15 26.2607 2 25.6307 2L25.6407 2.01Z" fill="black"/>
@@ -36,7 +41,7 @@ const Difficulty = () => {
                 </div>
             </Link>
             <Link to="/question-number" className="link">
-                <div className="button long-button lightblue-button medium-button">
+                <div className="button long-button lightblue-button medium-button" id="medium" onClick={handleDifficultyChange}>
                     <svg style={{ marginRight: "10px" }} width="35" height="40" viewBox="0 0 43 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M35.2406 23C34.3806 23 33.5806 22.47 33.2706 21.62C32.3106 19 31.1506 16.5 29.8206 14.19C27.9806 11 26.3106 8.95997 24.7106 7.96997C23.7506 7.36997 23.4406 6.11997 24.0006 5.14997C24.3906 4.47997 25.0906 4.09998 25.8206 4.09998C26.1506 4.09998 26.4906 4.17997 26.8006 4.33997C31.1006 6.60997 36.6206 9.80997 38.5406 12.13C40.2106 14.15 40.2806 17.23 39.6006 19.38C39.0506 21.13 38.0106 22.3 36.6806 22.67L35.8006 22.91C35.6106 22.96 35.4206 22.99 35.2406 22.99V23Z" fill="#80E5D1"/>
                         <path d="M25.8206 6.19C28.4706 7.59 35.0606 11.21 36.9306 13.47C38.6706 15.58 37.9006 20.17 36.1206 20.66L35.2506 20.9C34.2706 18.23 33.0806 15.63 31.6406 13.14C29.4306 9.31 27.5606 7.27 25.8306 6.19M25.8306 2C24.3806 2 22.9706 2.76 22.1906 4.1C21.0606 6.06 21.6906 8.55 23.6006 9.75C24.8806 10.55 26.3606 12.4 28.0006 15.24C29.2706 17.44 30.3806 19.83 31.3006 22.34C31.9206 24.03 33.5206 25.09 35.2306 25.09C35.6006 25.09 35.9806 25.04 36.3506 24.94L37.2206 24.7C39.2606 24.13 40.8106 22.47 41.5806 20.02C42.4306 17.33 42.3106 13.43 40.1406 10.8C38.4206 8.72 34.2606 5.92 27.7606 2.49C27.1406 2.16 26.4706 2 25.8006 2H25.8306Z" fill="black"/>
@@ -51,7 +56,7 @@ const Difficulty = () => {
                 </div>
             </Link>
             <Link to="/question-number" className="link">
-                <div className="button long-button blue-button hard-button">
+                <div className="button long-button blue-button hard-button" id="hard" onClick={handleDifficultyChange}>
                     <svg style={{ marginRight: "10px" }} width="35" height="40" viewBox="0 0 43 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M35.0507 22.72C34.2307 22.72 33.4707 22.21 33.1707 21.41C32.2107 18.78 31.0407 16.28 29.7107 13.97C27.8607 10.77 26.1807 8.72002 24.5707 7.71002C23.6607 7.14002 23.3607 5.95002 23.9007 5.02002C24.2707 4.38002 24.9407 4.02002 25.6407 4.02002C25.9607 4.02002 26.2807 4.10002 26.5707 4.25002C30.8607 6.52002 36.3807 9.71002 38.2807 12.02C39.9307 14.02 39.9907 17.06 39.3207 19.19C38.7807 20.91 37.7607 22.06 36.4607 22.42L35.5907 22.66C35.4107 22.71 35.2307 22.73 35.0507 22.73V22.72Z" fill="#C5D3DD"/>
                         <path d="M25.6307 6.01C28.2807 7.41 34.8707 11.03 36.7407 13.29C38.4807 15.4 37.7107 19.99 35.9307 20.48L35.0607 20.72C34.0807 18.05 32.8907 15.45 31.4507 12.96C29.2407 9.13 27.3707 7.09 25.6407 6.01M25.6307 2.01C24.2407 2.01 22.9007 2.73 22.1607 4.01C21.0907 5.88 21.6807 8.26 23.5107 9.4C24.8207 10.22 26.3207 12.09 27.9807 14.96C29.2607 17.17 30.3707 19.57 31.2907 22.09C31.8807 23.7 33.4007 24.72 35.0507 24.72C35.4007 24.72 35.7607 24.67 36.1207 24.57L36.9907 24.33C38.9707 23.78 40.4707 22.16 41.2207 19.77C42.0507 17.13 41.9407 13.31 39.8107 10.73C38.1107 8.67 33.9607 5.89 27.4907 2.46C26.8907 2.15 26.2507 2 25.6207 2L25.6307 2.01Z" fill="black"/>
