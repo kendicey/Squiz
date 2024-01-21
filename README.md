@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+![screencapture-localhost-3000-input-2024-01-21-11_43_00](https://github.com/kendicey/Squiz/assets/86147831/3fe76977-ced2-429f-9e7b-a579467f010e)
+![screencapture-localhost-3000-difficulty-2024-01-21-11_45_50](https://github.com/kendicey/Squiz/assets/86147831/a48dc49a-9d70-4092-a7dd-04df8f7cfebe)
+![screencapture-localhost-3000-question-number-2024-01-21-11_46_18](https://github.com/kendicey/Squiz/assets/86147831/5a17628d-3024-441c-bf0d-05ee002a5448)
+![screencapture-localhost-3000-name-2024-01-21-11_46_36](https://github.com/kendicey/Squiz/assets/86147831/eb0e40fd-3a5f-4900-8938-b2249a5f27c1)
+![screencapture-localhost-3000-wrong-answer-mockup-2024-01-21-11_43_20](https://github.com/kendicey/Squiz/assets/86147831/076482a6-0050-4486-ae70-f9da9dfd9089)
+![screencapture-localhost-3000-quiz-finish-2024-01-21-11_43_45](https://github.com/kendicey/Squiz/assets/86147831/d1ff7e76-2783-4e0a-881f-2e2d73bd7dd9)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tech Stack
 
-## Available Scripts
 
-In the project directory, you can run:
+React.js, CSS, Node.js, Express.js, OpenAI API, Git, Figma, Adobe Illustrator, Stable Diffusion
 
-### `npm start`
+# Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+git clone [https://github.com/elise-green/cmd-f-hackathon-2023.git](https://github.com/kendicey/Squiz.git)
+```
+2. Create a `.env` file and input your OpenAI api key
 
-### `npm test`
+3. Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm i
+```
 
-### `npm run build`
+4. Turn on server and ready to run:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+node server.js
+npm start
+```
