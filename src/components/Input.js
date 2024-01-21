@@ -1,90 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import pdfjs from "pdfjs-dist/build/pdf";
+import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import "../css/style.css";
 import Cyan from "../assets/img/cyan.svg";
 
+import {GlobalWorkerOptions, getDocument} from 'pdfjs-dist';
+
+GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.js';
+﻿
 const Input = () => {
-  const [pdfText, setPdfText] = useState("");
+    const [pdfContent, setPdfContent] = useState('');
 
-  // Function to read the PDF file asynchronously
-  function readFileAsync(file) {
-    return new Promise((resolve, reject) => {
-      let reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result);
+    const handleFileChange = async (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = async (e) => {
+        const contents = e.target.result;
+        const pdf = await getDocument(contents).promise;
+        const pdfPages = pdf.numPages;
+
+        let extractedText = '';
+
+        for (let i = 1; i <= pdfPages; i++) {
+          const textContent = await (await pdf.getPage(i)).getTextContent();
+          const pageText = textContent.items.map((item) => item.str).join(' ');
+          extractedText += pageText;
+          console.log(textContent);
+        }
+
+        setPdfContent(extractedText);
+        console.log(pdf);
       };
-      reader.onerror = reject;
+
       reader.readAsArrayBuffer(file);
-    });
-  }
-
-  // Function to extract text from the PDF
-  async function extractPdfText(arrayBuff) {
-    try {
-      // Initialize PDFJS worker
-      pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-
-      const pdf = await pdfjs.getDocument({ data: arrayBuff }).promise;
-      let extractedText = "";
-
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        content.items.forEach((item) => {
-          extractedText += item.str + " ";
-        });
-      }
-
-      return extractedText;
-    } catch (error) {
-      console.error("Error extracting text from PDF:", error);
-      return "";
-    }
-  }
-
-  // Execute when the user selects a file
-  const onFileSelected = async (e) => {
-    const fileList = e.target.files;
-    if (fileList?.length > 0) {
-      const pdfArrayBuffer = await readFileAsync(fileList[0]);
-      const extractedText = await extractPdfText(pdfArrayBuffer);
-      setPdfText(extractedText);
-
-      // Append the extracted text to the existing JSON file
-      const existingJson = await fetch("../ExtractedText.json").then((response) =>
-        response.json()
-      );
-      const updatedJson = { text: existingJson.text + " " + extractedText };
-
-      // Save the updated JSON back to the file
-      const updatedJsonString = JSON.stringify(updatedJson, null, 2);
-      const blob = new Blob([updatedJsonString], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-
-      // Trigger download of the updated JSON file
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "ExtractedText.json";
-      link.click();
-    }
-  };
-
-  // Fetch the text from the existing JSON file during initialization
-  useEffect(() => {
-    const fetchExistingText = async () => {
-      try {
-        const existingJson = await fetch("../ExtractedText.json").then((response) =>
-          response.json()
-        );
-        setPdfText(existingJson.text || "");
-      } catch (error) {
-        console.error("Error fetching existing text:", error);
-      }
     };
-
-    fetchExistingText();
-  }, []);
 
   return (
     <div className="input-screen">
@@ -103,12 +53,12 @@ const Input = () => {
         type="file"
         id="file-selector"
         accept=".pdf"
-        onChange={onFileSelected}
-        style={{ display: "none" }} // Hide the file input
+        onChange={handleFileChange}
+        style={{ display: "none" }} 
       />
       <div>
         <h2>Extracted Text:</h2>
-        <pre>{pdfText}</pre>
+        <pre>{pdfContent}</pre>
       </div>
       <Link to="/difficulty">
         <button className="continue-button">Continue</button>

@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import React from 'react';
+import 'canvas';
 
 import Opening from "./components/Opening";
 import Home from "./components/Home";
