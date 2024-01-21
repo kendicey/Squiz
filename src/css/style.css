@@ -30,6 +30,7 @@ p {
 :root {
     --cyan: #80E5D1;
     --blue: #063B8A;
+    --lightblue: #AAC9F8;
     --black: #000000;
     --white: #FFFFFF;
 }
@@ -41,16 +42,88 @@ body {
 }
 
 /* Buttons */
-button {
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: var(--subheading);
     font-size: 16px;
+    font-weight: 1000;
     color: var(--white);
     background-color: var(--cyan);
-    border: none;
-    border-radius: 30px;
-    margin-bottom: 20px;
-    padding: 10px 20px;
+    border: 5px solid var(--blue); 
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0px 70px;
     cursor: pointer;
+    transition: transform ease-in-out 0.1s;
+}
+.button:active {
+    transform: scale(0.9);
+}
+
+.icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.long-button {
+    width: 120px;
+}
+
+.short-button {
+    width: 80px;
+}
+
+.cyan-button {
+    background-color: var(--cyan);
+    color: var(--blue);
+}
+.cyan-button h2 {
+    color: var(--blue);
+}
+
+.lightblue-button {
+    background-color: var(--lightblue);
+    color: var(--blue);
+}
+.lightblue-button h2 {
+    color: var(--blue);
+}
+
+.blue-button {
+    background-color: var(--blue);
+    color: var(--white);
+}
+.blue-button h2 {
+    color: var(--white);
+}
+
+.white-button {
+    background-color: var(--white);
+    color: var(--blue);
+}
+.white-button h2 {
+    color: var(--blue);
+}
+
+.back-button {
+    position: fixed;
+    top: 50px;
+    left: 30px;
+    transition: transform ease-in-out 0.1s;
+}
+.back-button:active {
+    transform: scale(0.9);
+}
+
+.link {
+    text-decoration: none;
+}
+.link h2 {
+    text-decoration: none;
 }
 
 /* Opening Screen */
@@ -63,10 +136,55 @@ button {
     align-items: center;
     text-align: center;
     height: 100vh;
-    margin: 0;
 }
 .opening-screen h1 {
     color: var(--black);
+    opacity: 0;
+    animation: popup 3s forwards;
+}
+@keyframes popup {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.bouncing-squid {
+    position: absolute;
+    bottom: -100px;
+    transform: translateY(0);
+    animation: big-bounce 3s forwards;
+    opacity: 0;
+}
+
+@keyframes big-bounce {
+    0% {
+        transform: translateY(0); /* Bounce at the bottom */
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-210px); /* Bounce up */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-420px); /* Bounce down a bit */
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(-630px); /* Bounce back to the start */
+    }   
+    100% {
+        opacity: 1;
+        transform: translateY(-840px);
+    }
 }
 
 /* Home Screen */
@@ -76,11 +194,15 @@ button {
     align-items: center;
     background-color: var(--white);
     height: 10rem;
-    width: calc(100% - 96px); /* 100% width minus the sum of left and right margins */
+    width: calc(100% - 48px); /* 100% width minus the sum of left and right margins */
     border-radius: 30px;
     margin-top: 30px;
     padding: 0;
     text-decoration: none;
+    transition: transform ease-in-out 0.1s;
+}
+.big-button:active {
+    transform: scale(0.9);
 }
 .big-button img {
     height: 100%;
@@ -99,17 +221,34 @@ button {
 }
 
 /* Input Screen */
+.screen-title {
+    max-width: 220px;
+}
 textarea {
-    width: 100%;
-    height: 200px;
+    max-width: 70%;
+    min-height: 100px;
     border: 3px solid var(--blue);
     border-radius: 30px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 20px;
+    outline: none;       /* Remove outline */
+    resize: none;        /* Disable resizing */
+    padding: 10px;       /* Add padding for spacing */
+    margin-bottom: 20px; /* Add margin for spacing */
+}
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 .input-title {
     display: flex;
     flex-direction: row;
+}
+.or {
+    color: var(--blue);
+    margin: 0;
 }
 
 /* Name Screen */
@@ -117,7 +256,42 @@ textarea {
     height: 15px;
 }
 
-/* Quiz */
+/* Loading Screen */
+.loading-squid {
+    animation: small-bounce 3s forwards;
+}
+
+@keyframes small-bounce {
+    0% {
+        transform: translateY(0); /* Bounce at the bottom */
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-20px); /* Bounce up */
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(-10px); /* Bounce higher */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-20px); /* Bounce down a bit */
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-10px); /* Bounce down less */
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(-20px); /* Bounce back to the start */
+    }   
+    100% {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+}
+
+/* Quiz Screen */
 .answer-container {
     display: flex;
     flex-direction: column;

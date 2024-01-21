@@ -1,8 +1,15 @@
 import React, { useEffect } from "react";
 import Cyan from "../assets/img/cyan.svg";
 import "../css/style.css";
+import Bg from "../assets/img/bg.svg";
 
 const Opening = () => {
+
+    const svgBackground = {
+        backgroundImage: `url(${Bg})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    };
 
     // navigate to Home Screen after 3 seconds
     useEffect(() => {
@@ -17,9 +24,9 @@ const Opening = () => {
     }, []);
 
     return (
-        <div className="opening-screen">
+        <div className="opening-screen" style={svgBackground}>
             <h1>Welcome!</h1>
-            <img src={Cyan} alt="cyan" />
+            <img src={Cyan} alt="cyan" className="bouncing-squid"/>
         </div>
     );
 }
