@@ -23,7 +23,7 @@ const quizPrompt = (info) => {
             {
                 "questions": [
                     {
-                        "question1": "Question 1 Text",
+                        "question": "Question 1 Text",
                         "options": [
                             {"id": 1, "text": "Option 1 Text"},
                             {"id": 2, "text": "Option 2 Text"},
@@ -33,7 +33,7 @@ const quizPrompt = (info) => {
                         "correctOptionId": 3
                     },
                     {
-                        "question2": "Question 2 Text",
+                        "question": "Question 2 Text",
                         "options": [
                             {"id": 5, "text": "Option 1 Text"},
                             {"id": 6, "text": "Option 2 Text"},
@@ -43,7 +43,7 @@ const quizPrompt = (info) => {
                         "correctOptionId": 5
                     },
                     {
-                        "question3": "Question 3 Text",
+                        "question": "Question 3 Text",
                         "options": [
                             {"id": 9, "text": "Option 1 Text"},
                             {"id": 10, "text": "Option 2 Text"},

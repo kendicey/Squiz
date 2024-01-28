@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "../css/style.css";
 import Cyan from "../assets/img/cyan.svg";
 import Bg from "../assets/img/bg.svg";
 
 const Loading = () => {
+    const navigate = useNavigate();
 
     const svgBackground = {
         backgroundImage: `url(${Bg})`,
@@ -16,8 +17,8 @@ const Loading = () => {
     useEffect(() => {
         // Use setTimeout to delay the transition
         const timeoutId = setTimeout(() => {
-            // Redirect to the Home page after 5 seconds
-            window.location.href = '/quiz';
+            // Redirect to the Home page after 3 seconds
+            navigate('/quiz');
         }, 3000);
     
         // Cleanup the timeout to avoid memory leaks

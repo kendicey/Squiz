@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import "../css/style.css";
-import Orange from "../assets/img/orange.svg";
 import BgLight from "../assets/img/bg-light.svg";
 import ProgressBar from "../assets/img/progress-bar.svg";
 import HomeBtnSmall from "../assets/img/home-button-sm.svg";
+import { useMyContext } from "./Context";
+import Question from "./Question";
 
 const Quiz = () => {
+
+    const {questionObject, counter} = useMyContext();
 
     const svgBackground = {
         backgroundImage: `url(${BgLight})`,
@@ -14,6 +17,8 @@ const Quiz = () => {
         backgroundSize: 'cover',
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
     };
+
+    console.log(questionObject.questions)
 
     return (
         <div className="quiz-screen" style={svgBackground}>
@@ -26,26 +31,10 @@ const Quiz = () => {
             <div className="progress-bar">
                 <img src={ProgressBar} alt="progress bar" />
             </div>
-            <div className="question-container">
-                <h2>Q1</h2>
-                <h2>What command is used to read the online manual page for a command?</h2>
-            </div>
-            <Link to="/wrong-answer-mockup" className="link">
-                <div className="button long-button white-button answer-button">
-                    <h2>ls</h2>
-                </div>
-            </Link>
-            <div className="button long-button white-button answer-button">
-                <h2>cat</h2>
-            </div>
-            <Link to="/correct-answer-mockup" className="link">
-                <div className="button long-button white-button answer-button">
-                    <h2>man</h2>
-                </div>
-            </Link>
-            <div className="button long-button white-button answer-button">
-                <h2>cp</h2>
-            </div>
+            <Question 
+                q={questionObject.questions[counter]} 
+                i={counter}
+            /> 
         </div>
     );
 }

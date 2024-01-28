@@ -9,6 +9,10 @@ export const MyProvider = ({ children }) => {
     "questionNumber": "",
   });
 
+  const [questionObject, setQuestionObject] = useState({});
+
+  const [counter, setCounter] = useState(0);
+
   const updateRequestObject = (newValues) => {
     setRequestObject((prevRequestObject) => ({
         ...prevRequestObject,
@@ -16,8 +20,12 @@ export const MyProvider = ({ children }) => {
       }));
   };
 
+  const updateQuestionObject = (newQuestions) => {
+    setQuestionObject(newQuestions);
+  }
+
   return (
-    <MyContext.Provider value={{ requestObject, updateRequestObject }}>
+    <MyContext.Provider value={{ requestObject, updateRequestObject, questionObject, updateQuestionObject, counter, setCounter }}>
       {children}
     </MyContext.Provider>
   );

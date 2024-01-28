@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import "../css/style.css";
 import Orange from "../assets/img/orange.svg";
 import Bg from "../assets/img/bg.svg";
@@ -7,7 +7,8 @@ import BackBtn from "../assets/img/back-button.svg";
 import { useMyContext } from './Context';
 
 const Name = () => {
-    const { requestObject, updateRequestObject } = useMyContext();
+    const { requestObject, updateQuestionObject } = useMyContext();
+    const navigate = useNavigate();
 
     const svgBackground = {
         backgroundImage: `url(${Bg})`,
@@ -15,27 +16,30 @@ const Name = () => {
         backgroundSize: 'cover',
     };
     
-    const handleSubmit = () => {
-        console.log(requestObject);
-        fetch('http://localhost:8000/quiz', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({...requestObject}),
-        })
-        .then(response => {
+    const handleSubmit = async () => {
+        try {
+            console.log(requestObject);
+            const response = await fetch('http://localhost:8000/quiz', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({...requestObject}),
+            });
+
             if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            return response.json();
-        })
-        .then(data => {
+
+            const data = await response.json();
             console.log('Response:', data);
-        })
-        .catch(error => {
+
+            await updateQuestionObject(data);
+
+            navigate('/loading');
+        } catch(error) {
             console.error('Error:', error);
-        });
+        };
     }
 
     return (
@@ -50,11 +54,9 @@ const Name = () => {
                 >
                 </textarea>
             </div>
-            <Link to="/loading" className="link">
-                <div className="button short-button cyan-button enter-button" onClick={handleSubmit}>
-                    <h2>Enter</h2>
-                </div>
-            </Link>
+            <div className="button short-button cyan-button enter-button" onClick={handleSubmit}>
+                <h2>Enter</h2>
+            </div>
             <Link to="/question-number" className="link">
                 <img src={BackBtn} alt="Back Button" className="back-button" />
             </Link>

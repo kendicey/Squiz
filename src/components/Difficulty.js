@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import "../css/style.css";
 import CyanGreen from "../assets/img/cyan-green.svg";
