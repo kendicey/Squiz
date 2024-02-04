@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/style.css";
 import Cyan from "../assets/img/cyan.svg";
@@ -12,15 +11,13 @@ import {GlobalWorkerOptions, getDocument} from 'pdfjs-dist';
 GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.js';
 
 const Input = () => {
-    const { requestObject, updateRequestObject } = useMyContext();
+    const { updateRequestObject } = useMyContext();
   
     const svgBackground = {
         backgroundImage: `url(${Bg})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     };
-
-    const [pdfContent, setPdfContent] = useState('');
 
     const handleFileChange = async (event) => {
       const file = event.target.files[0];
@@ -39,13 +36,16 @@ const Input = () => {
           extractedText += pageText;
         }
 
-        setPdfContent(extractedText);
         updateRequestObject({fileContent: extractedText});
-        console.log(extractedText);
       };
 
       reader.readAsArrayBuffer(file);
     };
+
+    const handleTextareaChange = async (event) => {
+      const text = event.target.value;
+      updateRequestObject({fileContent: text});
+    }
 
   return (
       <div className="input-screen" style={svgBackground}>
@@ -57,7 +57,7 @@ const Input = () => {
           <h2>Give me your notes so I can Squiz for you!</h2>
         </div>
         <div className="input-container">
-          <textarea placeholder="text input" rows="4" cols="50"></textarea>
+          <textarea placeholder="text input" rows="4" cols="50" onChange={handleTextareaChange}></textarea>
         </div>
         <h2 className="or">
           OR
