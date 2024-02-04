@@ -23,7 +23,7 @@ const QuizFinish = () => {
     return (
         <div className="quiz-finish-screen" style={svgBackground}>
             <img src={Purple} alt="purple" className="floating"/>
-            <h1>Score: {correctPercentage}% ({correctAnsCounter}/10)</h1>
+            <h1>Score: {Math.round(correctPercentage)}% ({correctAnsCounter}/{numberOfQuestion})</h1>
             <Link to="/" className="link">
                 <div className="button white-button long-button review-button">
                     <h2>Review</h2>
