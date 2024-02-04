@@ -24,8 +24,10 @@ export const MyProvider = ({ children }) => {
     setQuestionObject(newQuestions);
   }
 
+  const [correctAnsCounter, setCorrectAnsCounter] = useState(0);
+
   return (
-    <MyContext.Provider value={{ requestObject, updateRequestObject, questionObject, updateQuestionObject, counter, setCounter }}>
+    <MyContext.Provider value={{ requestObject, updateRequestObject, questionObject, updateQuestionObject, counter, setCounter, correctAnsCounter, setCorrectAnsCounter }}>
       {children}
     </MyContext.Provider>
   );

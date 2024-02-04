@@ -5,12 +5,18 @@ import { useNavigate } from "react-router-dom";
 const Option = ({option, index, correctAnsId}) => {
     const [chosenIndex, setChosenIndex] = useState(null);
     const [cN, setCN] = useState('button long-button white-button answer-button');
-    const {requestObject, counter, setCounter} = useMyContext();
+    const {requestObject, counter, setCounter, correctAnsCounter, setCorrectAnsCounter} = useMyContext();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (chosenIndex !== null){
+            // change selected answer's style
             setCN(`button long-button white-button answer-button${chosenIndex == correctAnsId ? ' correct-answer' : ' wrong-answer'}`);
+
+            if (chosenIndex == correctAnsId) {
+                setCorrectAnsCounter(correctAnsCounter + 1);
+            }
+
             setTimeout(() => setCN("button long-button white-button answer-button"), 1500)
         }
     }, [chosenIndex]);
@@ -22,7 +28,7 @@ const Option = ({option, index, correctAnsId}) => {
                 setCounter(counter+1);
             }
             else {
-                navigate('/home');
+                navigate('/quiz-finish');
             }}, 1500)
     }
 

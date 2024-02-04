@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import "../css/style.css";
 import Purple from "../assets/img/purple.svg";
 import BgLight from "../assets/img/bg-light.svg";
 import HomeBtn from "../assets/img/home-button.svg";
 import ShareBtn from "../assets/img/share-button.svg";
+import { useMyContext } from "./Context";
 
 const QuizFinish = () => {
 
@@ -14,10 +15,15 @@ const QuizFinish = () => {
         backgroundSize: 'cover',
     };
 
+    const {requestObject, correctAnsCounter} = useMyContext();
+
+    const numberOfQuestion = requestObject.questionNumber;
+    const correctPercentage = correctAnsCounter / numberOfQuestion * 100;
+
     return (
         <div className="quiz-finish-screen" style={svgBackground}>
             <img src={Purple} alt="purple" className="floating"/>
-            <h1>Score: 80% (8/10)</h1>
+            <h1>Score: {correctPercentage}% ({correctAnsCounter}/10)</h1>
             <Link to="/" className="link">
                 <div className="button white-button long-button review-button">
                     <h2>Review</h2>
