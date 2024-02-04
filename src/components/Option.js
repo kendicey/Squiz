@@ -39,7 +39,7 @@ const Option = ({option, index, correctAnsId}) => {
                 id={option.id} 
                 onClick={checkAnswer}
             >
-                <h2>{option.text}</h2>
+                <h3>{option.text}</h3>
             </div>
         </>
     )

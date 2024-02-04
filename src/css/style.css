@@ -75,15 +75,12 @@ body {
     border-radius: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 0px 70px;
+    padding: 0px 10px;
     cursor: pointer;
     transition: transform ease-in-out 0.1s;
 }
 .button:active {
     transform: scale(0.9);
-}
-.button h2 {
-    white-space: nowrap;
 }
 
 .icon-button {
@@ -93,11 +90,11 @@ body {
 }
 
 .long-button {
-    width: 120px;
+    width: 260px;
 }
 
 .short-button {
-    width: 80px;
+    width: 260px;
 }
 
 .cyan-button {

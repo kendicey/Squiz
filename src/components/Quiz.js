@@ -9,7 +9,7 @@ import Question from "./Question";
 
 const Quiz = () => {
 
-    const {questionObject, counter} = useMyContext();
+    const {requestObject, questionObject, counter} = useMyContext();
 
     const svgBackground = {
         backgroundImage: `url(${BgLight})`,
@@ -26,7 +26,7 @@ const Quiz = () => {
                 <img src={HomeBtnSmall} alt="home button" />
             </Link>
             <h2>
-                1/10
+                {counter + 1}/{requestObject.questionNumber}
             </h2>
             <div className="progress-bar">
                 <img src={ProgressBar} alt="progress bar" />
