@@ -323,7 +323,7 @@ textarea {
 
 /* Loading Screen */
 .loading-squid {
-    animation: small-bounce 3s forwards;
+    animation: small-bounce 3s alternate-reverse infinite;
 }
 
 @keyframes small-bounce {

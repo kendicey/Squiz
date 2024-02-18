@@ -1,29 +1,14 @@
-import React, { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React from "react";
 import "../css/style.css";
 import Cyan from "../assets/img/cyan.svg";
 import Bg from "../assets/img/bg.svg";
 
 const Loading = () => {
-    const navigate = useNavigate();
-
     const svgBackground = {
         backgroundImage: `url(${Bg})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     };
-
-    // navigate to Quiz Screen after 3 seconds
-    useEffect(() => {
-        // Use setTimeout to delay the transition
-        const timeoutId = setTimeout(() => {
-            // Redirect to the Home page after 3 seconds
-            navigate('/quiz');
-        }, 3000);
-    
-        // Cleanup the timeout to avoid memory leaks
-        return () => clearTimeout(timeoutId);
-    }, []);
 
     return (
         <div className="loading-screen" style={svgBackground}>

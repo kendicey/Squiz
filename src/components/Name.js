@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import "../css/style.css";
 import Orange from "../assets/img/orange.svg";
 import Bg from "../assets/img/bg.svg";
 import BackBtn from "../assets/img/back-button.svg";
 import { useMyContext } from './Context';
+import Loading from "./Loading";
 
 const Name = () => {
     const { requestObject, updateQuestionObject } = useMyContext();
+    const [ isLoading, setIsLoading ] = useState(false);
     const navigate = useNavigate();
 
     const svgBackground = {
@@ -17,6 +19,7 @@ const Name = () => {
     };
     
     const handleSubmit = async () => {
+        setIsLoading(true);
         try {
             console.log(requestObject);
             const response = await fetch('http://localhost:8000/quiz', {
@@ -28,6 +31,7 @@ const Name = () => {
             });
 
             if (!response.ok) {
+                setIsLoading(false);
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
@@ -35,32 +39,37 @@ const Name = () => {
             console.log('Response:', data);
 
             await updateQuestionObject(data);
+            setIsLoading(false);
 
-            navigate('/loading');
+            navigate('/quiz');
         } catch(error) {
             console.error('Error:', error);
         };
     }
 
     return (
-        <div className="name-screen" style={svgBackground}>
-            <img src={Orange} alt="orange" className="floating"/>
-            <h1>Name Your Quiz!</h1>
-            <div className="input-container">
-                <textarea
-                    placeholder="quiz"
-                    rows="1"
-                    cols="50"
-                >
-                </textarea>
-            </div>
-            <div className="button short-button cyan-button enter-button" onClick={handleSubmit}>
-                <h2>Enter</h2>
-            </div>
-            <Link to="/question-number" className="link">
-                <img src={BackBtn} alt="Back Button" className="back-button" />
-            </Link>
-        </div>
+        <>
+            { isLoading ? 
+              <Loading /> :
+              <div className="name-screen" style={svgBackground}>
+                  <img src={Orange} alt="orange" className="floating"/>
+                  <h1>Name Your Quiz!</h1>
+                  <div className="input-container">
+                    <textarea
+                        placeholder="quiz"
+                        rows="1"
+                        cols="50"
+                    ></textarea>
+                  </div>
+                  <div className="button short-button cyan-button enter-button" onClick={handleSubmit}>
+                      <h2>Enter</h2>
+                  </div>
+                  <Link to="/question-number" className="link">
+                      <img src={BackBtn} alt="Back Button" className="back-button" />
+                  </Link>
+              </div>
+            }
+        </>
     );
 }
 
